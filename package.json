@@ -1,0 +1,31 @@
+{
+  "name": "guild-api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veyarjuna/Guild-API.git"
+  },
+  "author": "Vey Arjuna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Veyarjuna/Guild-API/issues"
+  },
+  "homepage": "https://github.com/Veyarjuna/Guild-API#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "joi": "^17.6.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.0",
+    "uuid": "^8.3.2"
+  }
+}
