@@ -57,7 +57,7 @@ export const updateRankPointUser = async(req, res) => {
                     rank_point_user_id:req.params.id
                 }
             })
-            res.status(200).json({msg:"RankPointUser Updated"})
+            res.status(200).json({status:200,msg:"RankPointUser Updated"})
         }
     } catch (error) {
         res.status(500).json({msg:error})
@@ -71,7 +71,7 @@ export const deleteRankPointUser = async(req, res) => {
                 rank_point_user_id:req.params.id
             }
         })
-        res.status(200).json({msg:"RankPointUser Deleted"})
+        res.status(200).json({status:204,msg:"RankPointUser Deleted"})
     } catch (error) {
         res.json(500).json({msg:error})
     }

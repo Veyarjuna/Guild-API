@@ -36,7 +36,7 @@ export const createJobdesk = async(req, res) => {
                 }
             }).then(async function(jobdesk){
                 if(jobdesk){
-                    res.status(500).json({msg:"Name is Already Taken"});
+                    res.json({status:500,msg:"Name is Already Taken"});
                 }else{
                     let data = {
                         name_job_desk: name_job_desk,
@@ -44,7 +44,7 @@ export const createJobdesk = async(req, res) => {
                         proof_job_desk: proof_job_desk
                     }
                     await JobDesk.create(data)
-                    res.status(200).json({msg:"Job Desk Added"})
+                    res.status(200).json({status:200,msg:"Job Desk Added"})
                 }
             })
         }
@@ -77,9 +77,9 @@ export const updateJobdesk = async(req, res) => {
                             job_desk_id:req.params.id
                         }
                     })
-                    res.status(200).json({msg:"Job Desk Updated"})
+                    res.status(200).json({status:200,msg:"Job Desk Updated"})
                 }else{
-                    res.status(500).json({msg:"Name is Already Taken"});
+                    res.status(500).json({status:500,msg:"Name is Already Taken"});
                 }
             })
         }
@@ -95,7 +95,7 @@ export const deleteJobdesk = async(req, res) => {
                 job_desk_id: req.params.id
             }
         })
-        res.status(200).json({msg:"Job Desk Deleted"})
+        res.status(200).json({status:204,msg:"Job Desk Deleted"})
     } catch (error) {
         res.json(500).json({msg:error})
     }

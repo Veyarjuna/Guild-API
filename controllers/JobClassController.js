@@ -36,14 +36,14 @@ export const createJobClass = async(req, res) => {
                 }
             }).then(async function(jobclass){
                 if(jobclass){
-                    res.status(500).json({msg:"Job is Already Taken"});
+                    res.json({status:500,msg:"Job is Already Taken"});
                 }else{
                     let data = {
                         name_job_class: name_job_class,
                         level_job_class: level_job_class
                     }
                     await JobClass.create(data)
-                    res.status(200).json({msg: "New job Class Created"})
+                    res.status(200).json({status:200,msg: "New job Class Created"})
                 }
             })
         }
@@ -75,9 +75,9 @@ export const updateJobClass = async(req, res) => {
                             job_class_id:req.params.id
                         }
                     })
-                    res.status(200).json({msg: "New job Class Updated"})
+                    res.status(200).json({status:200,msg: "New job Class Updated"})
                 }else{
-                    res.status(500).json({msg:"Job is Already Taken"});
+                    res.status(500).json({status:500,msg:"Job is Already Taken"});
                 }
             })
         }
@@ -93,7 +93,7 @@ export const deleteJobClass = async(req, res) => {
                 job_class_id: req.params.id
             }
         })   
-        res.status(200).json({msg:"Job Class Deleted"})
+        res.status(200).json({status:204,msg:"Job Class Deleted"})
     } catch (error) {
         res.status(500).json({msg:error})
     }

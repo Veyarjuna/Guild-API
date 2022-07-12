@@ -36,7 +36,7 @@ export const createRank = async(req, res) => {
                 }
             }).then(async function(rank){
                 if(rank){
-                    res.status(500).json({msg:"Name is Already Taken"});
+                    res.json({status:500,msg:"Name is Already Taken"});
                 }else{
                     let data = {
                         rank_name: rank_name,
@@ -46,7 +46,7 @@ export const createRank = async(req, res) => {
                         if(!newRank){
                             res.status(500).json({msg:"Rank Input Error"})
                         }else{
-                            res.status(200).json({msg:"Rank Created"})
+                            res.status(200).json({status:200,msg:"Rank Created"})
                         }
                     })
                 }
@@ -84,11 +84,11 @@ export const updateRank = async(req, res) => {
                         if(!newRank){
                             res.status(500).json({msg:"Rank Input Error"})
                         }else{
-                            res.status(200).json({msg:"Rank Updated"})
+                            res.status(200).json({status:200,msg:"Rank Updated"})
                         }
                     })
                 }else{
-                    res.status(500).json({msg:"Name is Already Taken"});
+                    res.status(500).json({status:500,msg:"Name is Already Taken"});
                 }
             })
         }   
@@ -104,7 +104,7 @@ export const deleteRank = async(req, res) => {
                 rank_id: req.params.id
             }
         })
-        res.status(200).json({msg:"rank Deleted"})
+        res.status(200).json({status:204,msg:"rank Deleted"})
     } catch (error) {
         res.status(500).json({msg:error})
     }

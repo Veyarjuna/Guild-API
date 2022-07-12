@@ -3,9 +3,18 @@ import {check} from "express-validator";
 export const UserValidation = [
     check('user_name','Name is Required').notEmpty(),
     check('email', 'Please include a valid email').isEmail().normalizeEmail({ gmail_remove_dots: true }),
-    check('password', 'Password must be 6 or more characters').isLength({ min: 8 }),
+    check('password', 'Password must be 6 or more characters').isLength({ min: 6 }).notEmpty(),
     check('gender', 'Select Gender'),
-    check('img_profil', 'Select IMG'),
+    check('img_profil', 'Select Photo'),
+    check('rank_point_user_id').isEmpty(),
+    check('job_class_id')
+]
+export const UserEditValidation = [
+    check('user_name','Name is Required').notEmpty(),
+    check('email', 'Please include a valid email').isEmail().normalizeEmail({ gmail_remove_dots: true }),
+    check('password'),
+    check('gender', 'Select Gender'),
+    check('img_profil', 'Select Photo'),
     check('rank_point_user_id').isEmpty(),
     check('job_class_id')
 ]

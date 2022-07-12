@@ -42,7 +42,7 @@ export const createUser = async(req,res)=>{
                 }
             }).then(async function(user){
                 if(user){
-                    res.status(500).json({msg:"Name is Already Taken"});
+                    res.json({status:500,msg:"Name is Already Taken"});
                 }else{
                     let hashPassword = await bcryptjs.hash(password,8)
                     let dataRankPointUser ={
@@ -66,7 +66,7 @@ export const createUser = async(req,res)=>{
                                 res.status(500).json({msg:"User Input Error"});
                             }
                             if(newUser){
-                                res.status(200).json({msg:"User Created"})
+                                res.status(200).json({status:200,msg:"User Created"})
                             }
                     })
                     })
@@ -92,15 +92,24 @@ export const updateUser = async(req,res)=>{
                 }
             }).then(async function(user){
                 if(user){
-                    let hashPassword = await bcryptjs.hash(password,8)
-                    let data = {
-                            user_name : user_name,
+                    if(password ==  null){
+                        var data = {
                             email : email,
-                            password: hashPassword,
                             gender: gender,
                             img_profil: img_profil,
                             job_class_id:job_class_id
                         }
+                    }else{
+                        let hashPassword = await bcryptjs.hash(password,8)
+                        var data = {
+                                email : email,
+                                password: hashPassword,
+                                gender: gender,
+                                img_profil: img_profil,
+                                job_class_id:job_class_id
+                            }
+                    }
+                    
                     await User.update(data,{
                         where:{
                             user_id:req.params.id,
@@ -110,7 +119,7 @@ export const updateUser = async(req,res)=>{
                             res.status(500).json({msg:"User Input Error"});
                         }
                         if(updateUser){
-                            res.status(200).json({msg:"User Updated"})
+                            res.status(200).json({status:200,msg:"User Updated"})
                         }
                     })
                 }else{
@@ -136,7 +145,7 @@ export const deleteUser = async(req,res)=>{
                 user_id: req.params.id
             }
         })
-        res.status(200).json({msg:"User Deleted"})
+        res.status(200).json({status:204,msg:"User Deleted"})
     } catch (error) {
         res.json(500).json({msg:error})
     }
